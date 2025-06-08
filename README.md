@@ -57,7 +57,7 @@
 - Транзакція 1 читає опис фільму.
 - <img width="652" alt="image" src="https://github.com/user-attachments/assets/4bce8928-80b5-4c77-b4fd-e96ee85e1c74" />
 - Транзакція 2 змінює опис того самого фільму й робить `COMMIT`.
-- <img width="514" alt="image" src="https://github.com/user-attachments/assets/fcde71bc-376c-4bfb-83a9-bf6f9656abd0"
+- <img width="514" alt="image" src="https://github.com/user-attachments/assets/fcde71bc-376c-4bfb-83a9-bf6f9656abd0"/>
 - Перевірка змін
 - <img width="685" alt="image" src="https://github.com/user-attachments/assets/fc618e56-fa8f-43b7-963a-9d0535fbf31e" />
 - Транзакція 1 повторно читає той самий запис — і отримує **старе значення**, незважаючи на зміну.
