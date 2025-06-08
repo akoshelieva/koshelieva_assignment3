@@ -32,7 +32,7 @@
   - Перше зчитування: `description = "A mentally unstable Vietnam War veteran works as a night-time taxi driver in New York City where the perceived decadence and sleaze feed his urge fo..."`.
   - <img width="694" alt="image" src="https://github.com/user-attachments/assets/5a4e7420-dc40-4c63-b2ac-3f31d280b3fb" />
   - Після `UPDATE` і `COMMIT`в другій транзакції застосована: Зміна `description` застосована.
-  - <img width="706" alt="image" src="https://github.com/user-attachments/assets/8508527c-e26a-436a-802d-e6c95bbc6051"
+  - <img width="706" alt="image" src="https://github.com/user-attachments/assets/8508527c-e26a-436a-802d-e6c95bbc6051"/>
   - Друге зчитування: `description = "This collection includes 12 World War II-era propaganda films"`.
 #### Пояснення
 - **Концепція**:
