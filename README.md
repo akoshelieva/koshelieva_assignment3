@@ -2,10 +2,14 @@
 
 ### Завдання 1:Dirty Read – READ UNCOMMITTED
 #### Сценарій
-  - <img width="701" alt="image" src="https://github.com/user-attachments/assets/9c1aaae6-3319-448f-80d9-924e21f4c404" /> Початкове значення `runtime = 100` для `type = "SHOW"` і `release_year = 1945` 
-  - <img width="703" alt="image" src="https://github.com/user-attachments/assets/9e7f7b2e-9c0b-4360-87e6-5b8663436cb2" />   - Після `UPDATE`: `runtime = 80` в першій транзакції (незафіксовано).
-  - <img width="740" alt="image" src="https://github.com/user-attachments/assets/9e222f80-10f5-4956-92fa-e804dccfd614" /> Читання: `runtime = 80` в другій транзакції (брудне читання).
-  - <img width="735" alt="image" src="https://github.com/user-attachments/assets/3476850e-56dd-4144-8b7d-60071c3c7484" /> Після відкат Транзакції 1: `runtime = 100`.
+  - <img width="701" alt="image" src="https://github.com/user-attachments/assets/9c1aaae6-3319-448f-80d9-924e21f4c404" />
+  - Початкове значення `runtime = 100` для `type = "SHOW"` і `release_year = 1945` 
+  - <img width="703" alt="image" src="https://github.com/user-attachments/assets/9e7f7b2e-9c0b-4360-87e6-5b8663436cb2" />
+  - Після `UPDATE`: `runtime = 80` в першій транзакції (незафіксовано).
+  - <img width="740" alt="image" src="https://github.com/user-attachments/assets/9e222f80-10f5-4956-92fa-e804dccfd614" />
+  - Читання: `runtime = 80` в другій транзакції (брудне читання).
+  - <img width="735" alt="image" src="https://github.com/user-attachments/assets/3476850e-56dd-4144-8b7d-60071c3c7484" />
+  - Відкат Транзакції 1: `runtime = 100`.
 
 #### Пояснення
 - **Що спричинило аномалію?**
@@ -24,9 +28,12 @@
 ### Завдання 2: Non-Repeatable Read – READ COMMITTED
 #### Сценарій
 
-  - <img width="747" alt="image" src="https://github.com/user-attachments/assets/831ecea7-8f9e-43f5-81e4-e711b8150f92" /> Перше зчитування: `description = "A mentally unstable Vietnam War veteran works as a night-time taxi driver in New York City where the perceived decadence and sleaze feed his urge fo..."`.
-  - <img width="694" alt="image" src="https://github.com/user-attachments/assets/5a4e7420-dc40-4c63-b2ac-3f31d280b3fb" /> Після `UPDATE` і `COMMIT`в другій транзакції застосована: Зміна `description` застосована.
-  - <img width="706" alt="image" src="https://github.com/user-attachments/assets/8508527c-e26a-436a-802d-e6c95bbc6051" Друге зчитування: `description = "This collection includes 12 World War II-era propaganda films"`.
+  - <img width="747" alt="image" src="https://github.com/user-attachments/assets/831ecea7-8f9e-43f5-81e4-e711b8150f92" />
+  - Перше зчитування: `description = "A mentally unstable Vietnam War veteran works as a night-time taxi driver in New York City where the perceived decadence and sleaze feed his urge fo..."`.
+  - <img width="694" alt="image" src="https://github.com/user-attachments/assets/5a4e7420-dc40-4c63-b2ac-3f31d280b3fb" />
+  - Після `UPDATE` і `COMMIT`в другій транзакції застосована: Зміна `description` застосована.
+  - <img width="706" alt="image" src="https://github.com/user-attachments/assets/8508527c-e26a-436a-802d-e6c95bbc6051"
+  - Друге зчитування: `description = "This collection includes 12 World War II-era propaganda films"`.
 #### Пояснення
 - **Концепція**:
   - Неповторне читання виникає, коли Транзакція 1 зчитує один і той самий рядок двічі, а між цими зчитуваннями Транзакція 2 змінює дані й фіксує їх. Рівень `READ COMMITTED` забезпечує, що зчитуються лише зафіксовані дані на момент зчитування, але не запобігає оновленням від інших транзакцій.
@@ -46,11 +53,14 @@
 
 # Завдання 3: Repeatable Read – REPEATABLE READ
 
-- <img width="671" alt="image" src="https://github.com/user-attachments/assets/c0994c94-373a-444c-8f5f-3133b25512e0" /> транзакція 1 читає дані
-Транзакція 1 читає опис фільму.
-- <img width="652" alt="image" src="https://github.com/user-attachments/assets/4bce8928-80b5-4c77-b4fd-e96ee85e1c74" /> Транзакція 2 змінює опис того самого фільму й робить `COMMIT`.
-- <img width="514" alt="image" src="https://github.com/user-attachments/assets/fcde71bc-376c-4bfb-83a9-bf6f9656abd0" перевірка змін
-- <img width="685" alt="image" src="https://github.com/user-attachments/assets/fc618e56-fa8f-43b7-963a-9d0535fbf31e" /> Транзакція 1 повторно читає той самий запис — і отримує **старе значення**, незважаючи на зміну.
+- <img width="671" alt="image" src="https://github.com/user-attachments/assets/c0994c94-373a-444c-8f5f-3133b25512e0" />
+- Транзакція 1 читає опис фільму.
+- <img width="652" alt="image" src="https://github.com/user-attachments/assets/4bce8928-80b5-4c77-b4fd-e96ee85e1c74" />
+- Транзакція 2 змінює опис того самого фільму й робить `COMMIT`.
+- <img width="514" alt="image" src="https://github.com/user-attachments/assets/fcde71bc-376c-4bfb-83a9-bf6f9656abd0"
+- Перевірка змін
+- <img width="685" alt="image" src="https://github.com/user-attachments/assets/fc618e56-fa8f-43b7-963a-9d0535fbf31e" />
+- Транзакція 1 повторно читає той самий запис — і отримує **старе значення**, незважаючи на зміну.
 
 ## - **Концепція**:
 - Транзакція 1 **двічі читає одне й те саме значення**, незважаючи на зміну з боку транзакції 2.
